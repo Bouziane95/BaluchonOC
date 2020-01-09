@@ -38,18 +38,170 @@
         <!--Item 2-->
         <scene sceneID="yoy-DZ-gJ3">
             <objects>
-                <viewController id="h0j-TA-Zt5" sceneMemberID="viewController">
+                <viewController id="h0j-TA-Zt5" customClass="WeatherVC" customModule="BaluchonOC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YBH-IH-VzC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="x90-1E-cJ0">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fD1-Th-Kya">
+                                <rect key="frame" x="344" y="44" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="D2G-im-kTR"/>
+                                    <constraint firstAttribute="width" constant="50" id="P3b-2j-wEC"/>
+                                </constraints>
+                                <state key="normal" image="switch"/>
+                                <connections>
+                                    <action selector="goToChangeCity:" destination="h0j-TA-Zt5" eventType="touchUpInside" id="f3H-0d-1EB"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k89-s2-Tnq">
+                                <rect key="frame" x="15" y="54" width="227.5" height="269"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-zk-v76">
+                                <rect key="frame" x="279" y="149" width="125" height="73"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7s-Xu-izQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="43.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="40"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHF-70-NH4">
+                                        <rect key="frame" x="20.5" y="43.5" width="84.5" height="29.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="27"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v5g-qm-gaV">
+                                <rect key="frame" x="181.5" y="509" width="227.5" height="269"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UJX-Te-EPd">
+                                <rect key="frame" x="10" y="545" width="144.5" height="73"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kuc-tN-3DW">
+                                        <rect key="frame" x="57" y="0.0" width="31" height="43.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="40"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a city !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idD-0s-rHJ">
+                                        <rect key="frame" x="0.0" y="43.5" width="144.5" height="29.5"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="27"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GT6-zk-v76" firstAttribute="top" secondItem="fD1-Th-Kya" secondAttribute="bottom" constant="55" id="7Ex-oa-GM7"/>
+                            <constraint firstItem="1mP-Aq-ong" firstAttribute="trailing" secondItem="x90-1E-cJ0" secondAttribute="trailing" id="8kK-G7-IAe"/>
+                            <constraint firstItem="k89-s2-Tnq" firstAttribute="height" secondItem="YBH-IH-VzC" secondAttribute="height" multiplier="0.3" id="AxL-t7-BVx"/>
+                            <constraint firstItem="k89-s2-Tnq" firstAttribute="top" secondItem="1mP-Aq-ong" secondAttribute="top" constant="10" id="Bd4-RS-KPf"/>
+                            <constraint firstItem="fD1-Th-Kya" firstAttribute="top" secondItem="1mP-Aq-ong" secondAttribute="top" id="Dei-hf-S9d"/>
+                            <constraint firstItem="k89-s2-Tnq" firstAttribute="leading" secondItem="1mP-Aq-ong" secondAttribute="leading" constant="15" id="Eh9-k8-R2Z"/>
+                            <constraint firstItem="v5g-qm-gaV" firstAttribute="height" secondItem="YBH-IH-VzC" secondAttribute="height" multiplier="0.3" id="Hf0-U5-ZT8"/>
+                            <constraint firstItem="1mP-Aq-ong" firstAttribute="trailing" secondItem="v5g-qm-gaV" secondAttribute="trailing" constant="5" id="Ht6-rS-GZC"/>
+                            <constraint firstItem="x90-1E-cJ0" firstAttribute="leading" secondItem="1mP-Aq-ong" secondAttribute="leading" id="IA8-ug-Lff"/>
+                            <constraint firstItem="k89-s2-Tnq" firstAttribute="width" secondItem="YBH-IH-VzC" secondAttribute="width" multiplier="0.55" id="Kra-jN-B32"/>
+                            <constraint firstItem="1mP-Aq-ong" firstAttribute="bottom" secondItem="x90-1E-cJ0" secondAttribute="bottom" id="QYh-M2-IPO"/>
+                            <constraint firstItem="x90-1E-cJ0" firstAttribute="top" secondItem="1mP-Aq-ong" secondAttribute="top" constant="-44" id="dDP-WW-SmK"/>
+                            <constraint firstItem="1mP-Aq-ong" firstAttribute="trailing" secondItem="GT6-zk-v76" secondAttribute="trailing" constant="10" id="g4q-hq-yAN"/>
+                            <constraint firstItem="UJX-Te-EPd" firstAttribute="leading" secondItem="1mP-Aq-ong" secondAttribute="leading" constant="10" id="lP1-Tz-KCf"/>
+                            <constraint firstItem="1mP-Aq-ong" firstAttribute="bottom" secondItem="UJX-Te-EPd" secondAttribute="bottom" constant="195" id="mQG-bY-Lmr"/>
+                            <constraint firstItem="v5g-qm-gaV" firstAttribute="width" secondItem="YBH-IH-VzC" secondAttribute="width" multiplier="0.55" id="qhN-cg-iLB"/>
+                            <constraint firstItem="1mP-Aq-ong" firstAttribute="bottom" secondItem="v5g-qm-gaV" secondAttribute="bottom" constant="35" id="t3T-Cb-xUq"/>
+                            <constraint firstItem="1mP-Aq-ong" firstAttribute="trailing" secondItem="fD1-Th-Kya" secondAttribute="trailing" constant="20" id="zO1-Ox-ttK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="1mP-Aq-ong"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="nLv-qk-PyY"/>
+                    <connections>
+                        <outlet property="cityLabelBot" destination="idD-0s-rHJ" id="7Lr-uc-alW"/>
+                        <outlet property="cityLabelTop" destination="rHF-70-NH4" id="Xwb-K8-EVb"/>
+                        <outlet property="temperatureLabelBot" destination="Kuc-tN-3DW" id="dff-Wb-jRR"/>
+                        <outlet property="temperatureLabelTop" destination="H7s-Xu-izQ" id="g34-XT-SCk"/>
+                        <outlet property="weatherIconBot" destination="v5g-qm-gaV" id="y91-6j-KaP"/>
+                        <outlet property="weatherIconTop" destination="k89-s2-Tnq" id="H8T-6e-e8C"/>
+                        <segue destination="2Fs-Zq-odQ" kind="presentation" identifier="changeCity" id="SM0-UW-R2X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B9a-pb-JOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="590"/>
+            <point key="canvasLocation" x="211.59420289855075" y="589.95535714285711"/>
+        </scene>
+        <!--Change City View Controller-->
+        <scene sceneID="ooC-TF-i5c">
+            <objects>
+                <viewController id="2Fs-Zq-odQ" customClass="ChangeCityViewController" customModule="BaluchonOC" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XtY-ea-EM7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cityBackground" translatesAutoresizingMaskIntoConstraints="NO" id="gye-7y-Adm">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyh-5m-zBN">
+                                <rect key="frame" x="15" y="64" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hIC-vo-qYo"/>
+                                    <constraint firstAttribute="width" constant="30" id="mfK-J6-dJ4"/>
+                                </constraints>
+                                <state key="normal" image="left"/>
+                                <connections>
+                                    <action selector="backBtnPressed:" destination="2Fs-Zq-odQ" eventType="touchUpInside" id="O4t-fJ-WXr"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="NJm-oW-jVG">
+                                <rect key="frame" x="12" y="154" width="390" height="147"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="REm-NY-i3g">
+                                        <rect key="frame" x="127.5" y="0.0" width="135.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yC9-Do-Ta9">
+                                        <rect key="frame" x="79" y="91" width="232" height="56"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="40"/>
+                                        <state key="normal" title="Get Weather !">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="getWeatherPressed:" destination="2Fs-Zq-odQ" eventType="touchUpInside" id="b5d-Q0-XwF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vcS-Vy-zDx" firstAttribute="trailing" secondItem="NJm-oW-jVG" secondAttribute="trailing" constant="12" id="2Xi-o9-YPA"/>
+                            <constraint firstItem="gye-7y-Adm" firstAttribute="leading" secondItem="vcS-Vy-zDx" secondAttribute="leading" id="6Wp-Sg-8Hk"/>
+                            <constraint firstItem="NJm-oW-jVG" firstAttribute="centerX" secondItem="XtY-ea-EM7" secondAttribute="centerX" id="GF1-Z9-cRH"/>
+                            <constraint firstItem="vcS-Vy-zDx" firstAttribute="bottom" secondItem="gye-7y-Adm" secondAttribute="bottom" id="Pow-hl-Jb8"/>
+                            <constraint firstItem="vcS-Vy-zDx" firstAttribute="trailing" secondItem="gye-7y-Adm" secondAttribute="trailing" id="efz-xk-NGN"/>
+                            <constraint firstItem="gye-7y-Adm" firstAttribute="top" secondItem="vcS-Vy-zDx" secondAttribute="top" constant="-44" id="hvY-ov-S4Y"/>
+                            <constraint firstItem="NJm-oW-jVG" firstAttribute="leading" secondItem="vcS-Vy-zDx" secondAttribute="leading" constant="12" id="r0k-MP-29A"/>
+                            <constraint firstItem="Cyh-5m-zBN" firstAttribute="top" secondItem="vcS-Vy-zDx" secondAttribute="top" constant="20" id="rni-aY-ISc"/>
+                            <constraint firstItem="NJm-oW-jVG" firstAttribute="top" secondItem="vcS-Vy-zDx" secondAttribute="top" constant="110" id="ur2-Qn-JpO"/>
+                            <constraint firstItem="Cyh-5m-zBN" firstAttribute="leading" secondItem="vcS-Vy-zDx" secondAttribute="leading" constant="15" id="y92-Ti-mcR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vcS-Vy-zDx"/>
+                    </view>
+                    <connections>
+                        <outlet property="changeCityNameTextField" destination="REm-NY-i3g" id="5Bm-yQ-P8A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jc1-uZ-G1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="920.28985507246387" y="589.95535714285711"/>
         </scene>
         <!--Converter-->
         <scene sceneID="vaQ-Is-F7m">
@@ -178,6 +330,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background" width="500" height="755"/>
+        <image name="cityBackground" width="600" height="399.5"/>
         <image name="currency" width="30" height="30"/>
+        <image name="left" width="32" height="32"/>
+        <image name="switch" width="64" height="64"/>
     </resources>
 </document>
