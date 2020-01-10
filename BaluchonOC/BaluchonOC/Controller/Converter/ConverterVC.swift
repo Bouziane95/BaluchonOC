@@ -68,7 +68,7 @@ class ConverterVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         } else {
             let noDataText : UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.height))
             noDataText.text = "Enter an amount in $ and push the button to convert it !"
-            noDataText.font = UIFont(name: "Marker Felt", size: 38)
+            noDataText.font = UIFont(name: "Marker Felt", size: 35)
             noDataText.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             noDataText.textAlignment = .center
             noDataText.numberOfLines = 0

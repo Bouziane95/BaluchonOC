@@ -174,8 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				1E74D56923C76B2D002C689B /* TranslatorAPI.swift */,
-				1E74D55B23C75743002C689B /* DataModel */,
 				1E74D55923C7571E002C689B /* ConverterAPI.swift */,
+				1E74D55B23C75743002C689B /* DataModel */,
 			);
 			path = API;
 			sourceTree = "<group>";
