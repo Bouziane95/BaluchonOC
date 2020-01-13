@@ -78,13 +78,18 @@ class ChangeCityViewController: UIViewController {
     
     @IBAction func getWeatherPressed(_ sender: AnyObject) {
         
-        cityName = changeCityNameTextField.text!
-        userEnteredANewCityName()
-        self.dismiss(animated: true) {
-            self.delegate?.getWeatherInformationsBot(temperature: self.temperatureBot!.temp, city: self.cityNameBot!, icon: UIImage(named: self.weatherModel.weatherIconName)!)
+        if changeCityNameTextField.text! == "" {
+            let alert = UIAlertController(title: "No City", message: "Enter a city name", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        } else {
+            cityName = changeCityNameTextField.text!
+            userEnteredANewCityName()
+            self.dismiss(animated: true) {
+                self.delegate?.getWeatherInformationsBot(temperature: self.temperatureBot!.temp, city: self.cityNameBot!, icon: UIImage(named: self.weatherModel.weatherIconName)!)
+            }
         }
     }
-    
     
     @IBAction func backBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)

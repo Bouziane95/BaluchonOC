@@ -35,7 +35,7 @@ class GetTranslation: XCTestCase {
             XCTAssertNil(translationResult)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.001)
+        wait(for: [expectation], timeout: 1)
     }
     
     func testGetTranslationShouldShowFailedCallbackIfIncorrectResponse(){
@@ -63,7 +63,7 @@ class GetTranslation: XCTestCase {
             XCTAssertNil(translationResult)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.001)
+        wait(for: [expectation], timeout: 1)
     }
     
     func testGetTranslationShouldShowSuccessCallbackAndCorrectData(){
@@ -80,6 +80,6 @@ class GetTranslation: XCTestCase {
             XCTAssertEqual(translatedText, translationResult!)
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 0.001)
+        wait(for: [expectation], timeout: 1)
     }
 }
