@@ -9,13 +9,13 @@
 import Foundation
 
 struct WeatherData : Decodable {
-    let coord : CoordinateUser?
-    let name : String
+    var name : String
+    var coord : CoordinateUser?
 }
 
 struct CoordinateUser : Decodable {
-    let lon : String
-    let lat : String
+    var lon : Double
+    var lat : Double
 }
 
 class WeatherAPI {
@@ -30,7 +30,7 @@ class WeatherAPI {
     }
     
     func getCoordinateTest(callback: @escaping (Bool, CoordinateUser?) -> Void){
-        let urlUserLocation = "http://api.openweathermap.org/data/2.5/weather?lat=&lon=&APPID=c5c12c9a46b01504d1e3c9c570f5450f"
+        let urlUserLocation = "http://api.openweathermap.org/data/2.5/weather?lat=51.51&lon=-0.13&APPID=c5c12c9a46b01504d1e3c9c570f5450f"
         var request = URLRequest(url: URL(string: urlUserLocation)!)
         request.httpMethod = "GET"
         task?.cancel()

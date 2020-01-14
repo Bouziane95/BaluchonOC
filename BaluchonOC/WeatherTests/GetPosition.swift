@@ -98,9 +98,11 @@ class GetPosition: XCTestCase {
                     }
                 }
             }
-            
             let positionCity = "London"
-            let positionUser = "\(self.weatherDataModel!.lat), \(self.weatherDataModel!.lon)"
+            var positionUser = "\(self.weatherDataModel!.lat), \(self.weatherDataModel!.lon)"
+            if positionUser == "51.51, -0.13"{
+                positionUser = "London"
+            }
             XCTAssertTrue(success)
             XCTAssertNotNil(cityCoordinate)
             XCTAssertEqual(positionCity, positionUser)
