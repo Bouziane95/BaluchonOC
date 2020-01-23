@@ -24,6 +24,14 @@ class ChangeCityViewController: UIViewController {
    
     @IBOutlet weak var changeCityNameTextField: UITextField!
     
+    func displayAlertMessage(msg: String){
+        let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok",style: .default, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+
+    }
+    
     //Get the data of the weather
     func getWeatherBot(url: String, completion: @escaping (Weather?) -> Void){
         let urlQuery = "http://api.openweathermap.org/data/2.5/weather?q=\(cityName!)&APPID=c5c12c9a46b01504d1e3c9c570f5450f"
@@ -33,21 +41,31 @@ class ChangeCityViewController: UIViewController {
         request.httpMethod = "GET"
         
         let task = session.dataTask(with: request) { (data, response, error) in
-            guard let data = data else {completion(nil); return}
-            do {
-                let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                print(jsonObject)
-                let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
-                let decoder = JSONDecoder()
-                let weather = try decoder.decode(Weather.self, from: jsonData)
-                completion(weather)
-                self.delegate?.getWeatherInformationsBot(temperature: self.temperatureBot!.temp, city: self.cityNameBot!, icon: UIImage(named: self.weatherModel.weatherIconName)!)
-            }catch {
-                print(error)
-                completion(nil)
-                let alert = UIAlertController(title: "Problem with the city name", message: "Did you enter a wrong city name", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            if let httpResponse = response as? HTTPURLResponse{
+                switch httpResponse.statusCode {
+                case 200:
+                     guard let data = data else {completion(nil); return}
+                               do {
+                                   let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                                   print(jsonObject)
+                                   let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+                                   let decoder = JSONDecoder()
+                                   let weather = try decoder.decode(Weather.self, from: jsonData)
+                                   completion(weather)
+                                   self.delegate?.getWeatherInformationsBot(temperature: self.temperatureBot!.temp, city: self.cityNameBot!, icon: UIImage(named: self.weatherModel.weatherIconName)!)
+                               }catch {
+                                   print(error)
+                                   completion(nil)
+                               }
+                case 404:
+                    DispatchQueue.main.async {
+                        self.displayAlertMessage(msg: "Problem with the city name entered")
+                    }
+                default:
+                    print("Error")
+                }
             }
+           
         }
         task.resume()
         session.finishTasksAndInvalidate()
@@ -68,13 +86,13 @@ class ChangeCityViewController: UIViewController {
                 if ((response?.main) != nil) && response?.name != nil{
                     self.temperatureBot = response?.main
                     self.cityNameBot = (response?.name)
+                    self.delegate?.getWeatherInformationsBot(temperature: self.temperatureBot!.temp, city: self.cityNameBot!, icon: UIImage(named: self.weatherModel.weatherIconName)!)
                 } else {
-                    print("error")
+                    print("Error")
                 }
             }
         }
     }
-    
     
     @IBAction func getWeatherPressed(_ sender: AnyObject) {
         
@@ -85,9 +103,6 @@ class ChangeCityViewController: UIViewController {
         } else {
             cityName = changeCityNameTextField.text!
             userEnteredANewCityName()
-            self.dismiss(animated: true) {
-                self.delegate?.getWeatherInformationsBot(temperature: self.temperatureBot!.temp, city: self.cityNameBot!, icon: UIImage(named: self.weatherModel.weatherIconName)!)
-            }
         }
     }
     
