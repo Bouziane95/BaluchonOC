@@ -25,8 +25,8 @@ class ChangeCityViewController: UIViewController {
     @IBOutlet weak var changeCityNameTextField: UITextField!
     
     func displayAlertMessage(msg: String){
-        let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok",style: .default, handler: nil)
+        let alert = UIAlertController(title: "Incorrect City Name", message: msg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Back",style: .default, handler: nil)
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
 
@@ -34,7 +34,7 @@ class ChangeCityViewController: UIViewController {
     
     //Get the data of the weather
     func getWeatherBot(url: String, completion: @escaping (Weather?) -> Void){
-        let urlQuery = "http://api.openweathermap.org/data/2.5/weather?q=\(cityName!)&APPID=c5c12c9a46b01504d1e3c9c570f5450f"
+        let urlQuery = "http://api.openweathermap.org/data/2.5/weather?q=\(cityName!.replacingOccurrences(of: " ", with: "%20"))&APPID=c5c12c9a46b01504d1e3c9c570f5450f"
         let url = URL(string: urlQuery)
         var request = URLRequest(url: url!)
         let session = URLSession(configuration: .default)
@@ -59,7 +59,7 @@ class ChangeCityViewController: UIViewController {
                                }
                 case 404:
                     DispatchQueue.main.async {
-                        self.displayAlertMessage(msg: "Problem with the city name entered")
+                        self.displayAlertMessage(msg: "Please, enter a new city name")
                     }
                 default:
                     print("Error")
@@ -103,6 +103,9 @@ class ChangeCityViewController: UIViewController {
         } else {
             cityName = changeCityNameTextField.text!
             userEnteredANewCityName()
+        }
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
